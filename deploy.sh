@@ -30,11 +30,17 @@ if [ -d "/opt/llm-chat-app" ]; then
     mv /opt/llm-chat-app /opt/llm-chat-app.backup.$(date +%Y%m%d_%H%M%S)
 fi
 
-# 3. 克隆代码（请修改为你的 GitHub 仓库地址）
+# 3. 克隆代码
 echo "📥 克隆代码..."
 cd /opt
-git clone https://github.com/YOUR_USERNAME/llm-chat-app.git
-cd llm-chat-app
+if [ -d "/opt/llm-chat-app" ]; then
+    echo "⚠️  项目已存在，执行 git pull 更新..."
+    cd llm-chat-app
+    git pull
+else
+    git clone https://github.com/dazhi666666/llm-chat-app.git
+    cd llm-chat-app
+fi
 
 # 4. 配置环境变量
 echo "⚙️  配置环境变量..."
