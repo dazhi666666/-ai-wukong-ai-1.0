@@ -1,43 +1,57 @@
 version: '3.8'
 
 services:
+  # Nginx 反向代理 + 前端静态文件
+  nginx:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.prod
+    container_name: llm-chat-nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - llm-chat-network
+    restart: always
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # FastAPI 后端
   backend:
     build:
       context: ./backend
       dockerfile: Dockerfile
     container_name: llm-chat-backend
-    ports:
-      - "7000:8000"
+    expose:
+      - "8000"
     environment:
       - DEEPSEEK_API_KEY=${DEEPSEEK_API_KEY}
       - DEEPSEEK_API_URL=${DEEPSEEK_API_URL:-https://api.deepseek.com/v1/chat/completions}
       - DEEPSEEK_MODEL=${DEEPSEEK_MODEL:-deepseek-chat}
-      - CORS_ORIGINS=http://8.130.209.117:8080
+      - CORS_ORIGINS=http://8.130.209.117,http://localhost,http://127.0.0.1
+      - LOG_LEVEL=info
     env_file:
       - ./backend/.env
-    restart: unless-stopped
     networks:
       - llm-chat-network
-
-  frontend:
-    image: node:20-alpine
-    container_name: llm-chat-frontend
-    working_dir: /app
-    ports:
-      - "8080:5173"
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
-    environment:
-      - VITE_API_URL=http://8.130.209.117:7000/api
-    env_file:
-      - ./frontend/.env.production
-    depends_on:
-      - backend
-    restart: unless-stopped
-    networks:
-      - llm-chat-network
+    restart: always
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
 
 networks:
   llm-chat-network:
