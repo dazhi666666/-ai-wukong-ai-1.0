@@ -1,0 +1,103 @@
+{
+  "13ea0d2b": {
+    "id": "13ea0d2b",
+    "name": "未命名工作流",
+    "description": null,
+    "workflow": {
+      "nodes": [
+        {
+          "id": "node_0",
+          "type": "llm",
+          "data": {
+            "label": "LLM",
+            "type": "llm",
+            "config": {
+              "prompt": "",
+              "model": "deepseek-chat",
+              "temperature": 0.7,
+              "max_tokens": 2000,
+              "variable_name": null,
+              "output_key": null,
+              "inputs": null
+            }
+          },
+          "position": {
+            "x": 442.89853037958557,
+            "y": 135.1883956245754
+          }
+        },
+        {
+          "id": "node_1",
+          "type": "end",
+          "data": {
+            "label": "结束",
+            "type": "end",
+            "config": {
+              "prompt": null,
+              "model": null,
+              "temperature": 0.7,
+              "max_tokens": 2000,
+              "variable_name": null,
+              "output_key": "result",
+              "inputs": null
+            }
+          },
+          "position": {
+            "x": 262.8006923509681,
+            "y": 338.66665052331007
+          }
+        },
+        {
+          "id": "node_2",
+          "type": "start",
+          "data": {
+            "label": "开始",
+            "type": "start",
+            "config": {
+              "prompt": null,
+              "model": null,
+              "temperature": 0.7,
+              "max_tokens": 2000,
+              "variable_name": "user_input",
+              "output_key": null,
+              "inputs": null
+            }
+          },
+          "position": {
+            "x": 190.6050401770551,
+            "y": 95.44646569956903
+          }
+        }
+      ],
+      "edges": [
+        {
+          "id": "edge_1770975772913",
+          "source": "node_2",
+          "target": "node_0",
+          "sourceHandle": null,
+          "targetHandle": null
+        },
+        {
+          "id": "edge_1770975785719",
+          "source": "node_0",
+          "target": "node_1",
+          "sourceHandle": null,
+          "targetHandle": null
+        }
+      ]
+    },
+    "created_at": "2026-02-13T17:43:52.252099",
+    "updated_at": "2026-02-13T17:43:52.252099"
+  },
+  "29b19952": {
+    "id": "29b19952",
+    "name": "Test Workflow",
+    "description": "Test",
+    "workflow": {
+      "nodes": [],
+      "edges": []
+    },
+    "created_at": "2026-02-15T20:54:22.800212",
+    "updated_at": "2026-02-15T20:54:22.800212"
+  }
+}

@@ -1,0 +1,161 @@
+.workflow-toolbar {
+  width: 220px;
+  background: #ffffff;
+  border-right: 1px solid #e5e7eb;
+  padding: 20px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  overflow-y: auto;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.05);
+}
+
+.toolbar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.toolbar-section h3 {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin: 0;
+}
+
+.node-palette {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.node-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 16px;
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-left: 4px solid;
+  border-radius: 8px;
+  cursor: grab;
+  transition: all 0.2s ease;
+}
+
+.node-item:hover {
+  background: #f3f4f6;
+  transform: translateX(4px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.node-item:active {
+  cursor: grabbing;
+}
+
+.node-item-icon {
+  font-size: 20px;
+}
+
+.node-item-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+}
+
+.toolbar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toolbar-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolbar-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.toolbar-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.run-btn {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+}
+
+.save-btn {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+}
+
+.load-btn {
+  background: linear-gradient(135deg, #8b5cf6 0%, #7c3aed 100%);
+  color: white;
+}
+
+.clear-btn {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+}
+
+.btn-icon {
+  font-size: 16px;
+}
+
+.btn-label {
+  flex: 1;
+  text-align: left;
+}
+
+.toolbar-help {
+  font-size: 12px;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.toolbar-help p {
+  margin: 0;
+  padding: 4px 0;
+}
+
+/* 深色主题 */
+.dark-theme .workflow-toolbar {
+  background: #1f2937;
+  border-right-color: #374151;
+}
+
+.dark-theme .toolbar-section h3 {
+  color: #d1d5db;
+}
+
+.dark-theme .node-item {
+  background: #374151;
+  border-color: #4b5563;
+}
+
+.dark-theme .node-item:hover {
+  background: #4b5563;
+}
+
+.dark-theme .node-item-label {
+  color: #e5e7eb;
+}
+
+.dark-theme .toolbar-help {
+  color: #9ca3af;
+}

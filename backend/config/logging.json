@@ -1,0 +1,48 @@
+{
+  "logging": {
+    "level": "INFO",
+    "format": {
+      "console": "%(asctime)s | %(name)-20s | %(levelname)-8s | %(message)s",
+      "file": "%(asctime)s | %(name)-20s | %(levelname)-8s | %(module)s:%(funcName)s:%(lineno)d | %(message)s"
+    },
+    "handlers": {
+      "console": {
+        "enabled": true,
+        "colored": true,
+        "level": "INFO"
+      },
+      "file": {
+        "enabled": true,
+        "level": "DEBUG",
+        "max_size": "10MB",
+        "backup_count": 5,
+        "directory": "./logs"
+      },
+      "error": {
+        "enabled": true,
+        "level": "WARNING",
+        "max_size": "10MB",
+        "backup_count": 5,
+        "directory": "./logs",
+        "filename": "error.log"
+      },
+      "structured": {
+        "enabled": false,
+        "level": "INFO",
+        "directory": "./logs"
+      }
+    },
+    "loggers": {
+      "llm_chat": {"level": "INFO"},
+      "app": {"level": "INFO"},
+      "services": {"level": "INFO"},
+      "routers": {"level": "INFO"},
+      "uvicorn": {"level": "WARNING"},
+      "fastapi": {"level": "WARNING"}
+    },
+    "docker": {
+      "enabled": false,
+      "stdout_only": true
+    }
+  }
+}
